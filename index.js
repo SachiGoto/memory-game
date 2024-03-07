@@ -1,26 +1,21 @@
 // Background Music setting ---------------------
 let background = new Audio();
-let soundOnIcon = document.querySelectorAll("#soundOn")
-let soundOffIcon = document.querySelectorAll("#soundOff")
+let soundOnIcon = document.querySelectorAll("#soundOn");
+let soundOffIcon = document.querySelectorAll("#soundOff");
 
 const playBG = setTimeout(audio, 3000);
 
-function audio(){
+function audio() {
   background.src = "./sounds/title.mp3";
   background.autoplay = true;
   background.loop = true;
   background.volume = 0.1;
-  console.log('audio is played')
+  console.log("audio is played");
 }
 
-
-
-
-
-
 function togglePlay(soundOn) {
-  console.log('soundOn is', soundOn)
-  return soundOn == true ? pauseAudio(): playAudio();
+  console.log("soundOn is", soundOn);
+  return soundOn == true ? pauseAudio() : playAudio();
 }
 
 function playAudio() {
@@ -28,21 +23,25 @@ function playAudio() {
   background.autoplay = true;
   background.loop = true;
   background.volume = 0.1;
-  soundOnIcon.forEach(icon=>{icon.style.display = 'block'})
-  soundOffIcon.forEach(icon=>{icon.style.display = 'none'})
-  console.log('backgroun played')
+  soundOnIcon.forEach((icon) => {
+    icon.style.display = "block";
+  });
+  soundOffIcon.forEach((icon) => {
+    icon.style.display = "none";
+  });
+  console.log("backgroun played");
 }
 
 function pauseAudio() {
   background.pause();
-  soundOnIcon.forEach(icon=>{icon.style.display = 'none'})
-  soundOffIcon.forEach(icon=>{icon.style.display = 'block'})
-  console.log('backgroun paused')
+  soundOnIcon.forEach((icon) => {
+    icon.style.display = "none";
+  });
+  soundOffIcon.forEach((icon) => {
+    icon.style.display = "block";
+  });
+  console.log("backgroun paused");
 }
-
-
-
-
 
 let booSound = new Audio("./sounds/booSound.mp3");
 booSound.loop = false;
@@ -100,7 +99,7 @@ let clickToContinueMessage;
 function startSequence() {
   console.log("start button clicked");
   startBtn.style.display = "none";
-  document.querySelector(".unClickableLayer").style.zIndex = "10000";
+  // document.querySelector(".unClickableLayer").style.zIndex = "10000";
 
   const elem = document.getElementById("animate");
   setTimeout(function () {
@@ -159,18 +158,17 @@ function talk() {
     clickSound.play();
     document.getElementById("textBubble").innerText = speech[clicks];
     clicks++;
-  } else if(clicks == 2 ){
+  } else if (clicks == 2) {
     clickSound.play();
-    document.getElementById("textBubble").style.font= "bold 2em pixeBoy,serif"
+    document.getElementById("textBubble").style.font = "bold 2em pixeBoy,serif";
     document.getElementById("textBubble").innerText = speech[clicks];
     clicks++;
-  } else if(clicks == 3){
+  } else if (clicks == 3) {
     clickSound.play();
-    document.getElementById("textBubble").style.font = "bold 1.5em pixeBoy"
+    document.getElementById("textBubble").style.font = "bold 1.5em pixeBoy";
     document.getElementById("textBubble").innerText = speech[clicks];
     clicks++;
   } else if (clicks == 4) {
-   
     clickSound.play();
     document.getElementById("textBubble").innerText = speech[clicks];
     playBtn.style.display = "block";
@@ -186,7 +184,6 @@ function talk() {
 
     document.getElementById("animate").style.display = "none";
     document.querySelector(".unClickableLayer").style.zIndex = "1";
-    mainBox.style.pointerEvents = "auto";
   }
 }
 
@@ -238,6 +235,7 @@ function removeTileColor() {
   for (let i = 0; i < randomArray.length; i++) {
     document.getElementById(randomArray[i]).classList.remove("yellow");
   }
+  mainBox.style.pointerEvents = "auto";
 }
 
 // add an event listener to keep track of which titles player clicked -------------------------
@@ -250,13 +248,17 @@ function mark(event) {
   if (!playerArray.includes(event.target.id) && tracker < tiles) {
     playerArray.push(event.target.id);
     event.target.classList.add("yellow");
-    document.querySelector(".tileCount").innerHTML = `Tiles: ${tracker + 1}/ ${tiles}`;
+    document.querySelector(".tileCount").innerHTML = `Tiles: ${
+      tracker + 1
+    }/ ${tiles}`;
     tracker++;
   } else if (playerArray.includes(event.target.id)) {
     playerArray.splice(playerArray.indexOf(event.target.id), 1);
     event.target.classList.remove("yellow");
     tracker--;
-    document.querySelector(".tileCount").innerHTML = `Tiles: ${tracker}/ ${tiles}`;
+    document.querySelector(
+      ".tileCount"
+    ).innerHTML = `Tiles: ${tracker}/ ${tiles}`;
   }
 
   if (tracker == tiles) {
@@ -302,7 +304,6 @@ function checkAnswers() {
 function goBAM() {
   setTimeout(function () {
     document.getElementById("goGhost").classList.add("displayNone");
-  
   }, 600);
 }
 
@@ -323,7 +324,7 @@ function resetAll() {
   count = 0;
 
   boxes.forEach((box) => {
-  box.classList.remove("yellow");
+    box.classList.remove("yellow");
   });
 }
 
